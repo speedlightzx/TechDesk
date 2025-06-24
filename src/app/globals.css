@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+.ativo { 
+  @apply !text-white transition duration-600
+}
+
+.botoes button:nth-child(2).ativo ~ div {
+    @apply transform lg:translate-x-[calc(10vh)] translate-x-[calc(12vh)]
+}
+
+.botoes button:nth-child(1).ativo ~ div {
+  @apply transform lg:translate-x-[calc(-10vh)] translate-x-[calc(-12vh)]
+}
+
+.indicator {
+  position: absolute;
+  height: 5vh;
+  display: flex;
+  transition: 0.5s;
+  @apply bg-indigo-500 shadow-md rounded-md lg:max-w-[19vh] w-full max-w-[24vh] h-full max-h-[4.5vh] lg:max-h-[5vh]
+}
+
+.escolhaFuncionarioEmpresa {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  @apply text-black cursor-pointer relative z-10 font-semibold w-1/2 h-full text-center text-sm lg:text-base
+}
+
+.loginForm {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  @apply border-gray-400 border-1 rounded-md h-screen p-2 max-h-[6vh] font-semibold shadow-md
+}
+
+.loginForm:focus {
+  @apply shadow-md border-black
+}
+
+.botaoEntrar {
+  @apply w-full lg:py-3 py-2 text-sm lg:text-base text-white font-semibold rounded-lg shadow-md
+  bg-gradient-to-r from-indigo-500 to-purple-600 
+  hover:from-indigo-700 hover:to-purple-800
+  transition duration-300 ease-in-out mt-7
+}
