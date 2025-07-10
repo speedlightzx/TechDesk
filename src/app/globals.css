@@ -40,3 +40,11 @@
   hover:from-indigo-700 hover:to-purple-800
   transition duration-300 ease-in-out mt-7
 }
+
+.sidebarItem {
+  @apply cursor-pointer pl-3 flex text-white gap-x-2 h-[5.5vh] items-center transition duration-200;
+}
+
+.selectedSidebarItem {
+  @apply bg-indigo-500 rounded-md font-bold
+}
