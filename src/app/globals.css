@@ -29,7 +29,7 @@
 }
 
 .loginForm {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   @apply border-gray-400 border-1 rounded-md h-screen p-2 max-h-[6vh] font-semibold shadow-md
 }
 
