@@ -1,6 +1,7 @@
-'use client'
+"use client"
 
 import { CircleUserRound, ClipboardList, Home, LogOut, Users } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -9,39 +10,49 @@ export default function Sidebar() {
     const [selectedSidebarItem, setselectedSidebarItem] = useState<sidebarItem>('Home')
 
     return (
-        <aside className="h-screen w-1/8 pt-5 pb-5 border-r-2 border-r-indigo-500 justify-between flex flex-col bg-gray-900">
+        <aside className="h-screen lg:max-w-[25vh] w-full pt-5 pb-5 border-r-2 border-r-indigo-500 justify-between flex flex-col bg-gray-900">
+            
             <div className="h-[5%]">
                 <h1 className="text-white text-center font-semibold">Nome da empresa</h1>
             </div>
+
             <nav className="flex flex-col justify-center gap-y-13 list-none w-full h-[100%]">
 
-                <li 
+                <Link
+                prefetch
+                href="home"
                 onClick={() => setselectedSidebarItem('Home')}
                 className={`sidebarItem  ${selectedSidebarItem == 'Home' ? 'selectedSidebarItem' : ''}`}>
                 <Home color="white"/>
                 Home
-                </li>
+                </Link>
 
-                <li 
+                <Link
+                prefetch
+                href="chamados"
                 onClick={() => setselectedSidebarItem('Chamados')}
                 className={`sidebarItem  ${selectedSidebarItem == 'Chamados' ? 'selectedSidebarItem' : ''}`}>
                 <ClipboardList color="white"/>
                 Chamados
-                </li>
+                </Link>
 
-                <li
+                <Link
+                prefetch
+                href="funcionarios"
                 onClick={() => setselectedSidebarItem('Funcionários')}
                 className={`sidebarItem  ${selectedSidebarItem == 'Funcionários' ? 'selectedSidebarItem' : ''}`}>
                 <Users color="white"/>
                 Funcionários
-                </li>
+                </Link>
 
-                <li
+                <Link
+                prefetch
+                href="minhaconta"
                 onClick={() => setselectedSidebarItem('Minha conta')}
                 className={`sidebarItem  ${selectedSidebarItem == 'Minha conta' ? 'selectedSidebarItem' : ''}`}>
                 <CircleUserRound color="white"/>
                 Minha conta
-                </li>
+                </Link>
 
             </nav>
 
