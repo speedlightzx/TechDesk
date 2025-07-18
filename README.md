@@ -2,6 +2,8 @@
 ## Sobre o projeto
 TechDesk é um gerenciador de aberturas de chamados de TI para empresas. O objetivo do TechDesk é facilitar o gerenciamento dos chamados de TI, podendo organizar os funcionários por cargos e organizar os chamados por níveis de severidade e permite cadastrar/remover funcionários do sistema. Cada empresa cadastrada terá seus próprios funcionários e chamados. <br>
 
+[Repositório backend](https://github.com/speedlightzx/TechDesk-backend)
+
 ---
 ## Tecnologias do projeto
 ### Frontend: <br>
