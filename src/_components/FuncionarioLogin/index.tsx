@@ -39,6 +39,7 @@ export default function FuncionarioLogin() {
             body: JSON.stringify(dados)
         })
 
+        console.log(res)
         const resJson = await res.json()
         console.log(resJson)
 

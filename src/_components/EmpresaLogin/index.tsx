@@ -41,6 +41,7 @@ export default function EmpresaLogin() {
                 },
                 body: JSON.stringify(dados)
             })
+            console.log(res)
 
             const resJson = await res.json()
 
@@ -50,7 +51,7 @@ export default function EmpresaLogin() {
             setStatusResponse({ message: resMessage, success: resSuccess, NotificationVariant: resSuccess ? "default" : "destructive"})
             setTimeout(() => setStatusResponse({ message: "", success: false }), 5000)
 
-            console.log(res)
+            
         }
 
     return (
