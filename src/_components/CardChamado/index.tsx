@@ -1,7 +1,5 @@
 import { Label } from "@radix-ui/react-label";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
 import { LevelOfSeverity } from "../CardAbrirChamado";
 import { CalendarDays, CircleAlert, User } from "lucide-react";
 

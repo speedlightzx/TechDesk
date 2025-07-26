@@ -11,13 +11,12 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { SelectValue } from "@radix-ui/react-select";
 
 interface card {
-    cardOpen: boolean,
     setCardOpen: (cardOpen: boolean) => void
 }
 
 export type LevelOfSeverity = "Baixo"|"Médio"|"Alto"|"Crítico"|""
 
-export default function CardAbrirChamado({ setCardOpen, cardOpen }: card) {
+export default function CardAbrirChamado({ setCardOpen }: card) {
 
     const [title, setTitle] = useState<string>("")
     const [desc, setDesc] = useState<string>("")
@@ -59,7 +58,7 @@ export default function CardAbrirChamado({ setCardOpen, cardOpen }: card) {
 
                 <div className="cardDiv">
                 <Label>Nível de Severidade</Label>
-                <Select required onValueChange={(v:LevelOfSeverity) => setSeverity(v)}>
+                <Select required defaultValue="Baixo" onValueChange={(v:LevelOfSeverity) => setSeverity(v)}>
                     <SelectTrigger>
                         <SelectValue placeholder="Severidade"/>
                     </SelectTrigger>

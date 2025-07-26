@@ -24,7 +24,7 @@ export default function Chamados() {
                 <h1 className="text-3xl font-semibold">Seus últimos chamados abertos</h1>
 
                 <section className="w-full flex justify-center gap-5 flex-wrap h-full overflow-y-auto border-t-1 p-2 rounded-md">
-                    <CardChamado levelOfSeverity="Alto" title="computador falhando" description="nao ligmedjkqwenqjwsjqwnekjqwnejkqwxzkjqwnmejkqwekqw sjkqwnejkqwekjqwnejkqwekqwmsjkqwnejqwkeqkja" author="eu" createdAt={new Date().toLocaleDateString()}/>
+                    <CardChamado levelOfSeverity="Alto" title="computador falhando" description="nao liga" author="eu" createdAt={new Date().toLocaleDateString()}/>
                     <CardChamado levelOfSeverity="Baixo" title="computador falhando" description="nao liga" author="eu" createdAt={new Date().toLocaleDateString()}/>
                     <CardChamado levelOfSeverity="Crítico" title="computador falhando" description="nao liga" author="eu" createdAt={new Date().toLocaleDateString()}/>
                     <CardChamado levelOfSeverity="Médio" title="computador falhando" description="nao liga" author="eu" createdAt={new Date().toLocaleDateString()}/>
@@ -32,7 +32,7 @@ export default function Chamados() {
             </div>
         </div>
 
-        {cardOpen && <CardAbrirChamado cardOpen={cardOpen} setCardOpen={setCardOpen}/>}
+        {cardOpen && <CardAbrirChamado setCardOpen={setCardOpen}/>}
         </div>
     )
 }

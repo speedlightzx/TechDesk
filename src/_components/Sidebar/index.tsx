@@ -1,10 +1,10 @@
 "use client"
 
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarGroupContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader, SidebarProvider } from "../ui/sidebar"
-import { CircleUserRound, ClipboardList, LogOut, Users } from "lucide-react";
+import { Home } from "lucide-react"
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader, SidebarProvider } from "../ui/sidebar"
+import { CircleUserRound, ClipboardList, Users } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const items = [
@@ -20,24 +20,30 @@ const items = [
   },
   {
     title: "Funcionários",
-    url: "#",
+    url: "funcionarios",
     icon: Users,
   },
   {
     title: "Minha conta",
-    url: "#",
+    url: "minhaConta",
     icon: CircleUserRound,
   }
 ] as const
 
 export default function AppSidebar() {
 
+useEffect(() => {
+  console.log('sidebar renderizada')
+}, [])
+
         const paths: any = {
           "home": "Home",
-          "chamados": "Chamados"
+          "chamados": "Chamados",
+          "funcionarios": "Funcionários",
+          "minhaConta": "Minha conta"
         } as const
 
-        const url = usePathname().split("/")[1]
+        const url = usePathname().split("/")[2]
 
         type sidebarItem = 'Home' | 'Chamados' | 'Funcionários' | 'Minha conta'
         const [selectedSidebarItem, setselectedSidebarItem] = useState<sidebarItem>(paths[url] || "Home")
