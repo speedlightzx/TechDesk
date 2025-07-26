@@ -25,18 +25,13 @@ export default function FuncionarioLogin() {
     const validateLogin = async(e: FormEvent) => {
         e.preventDefault()
 
-        const dados = {
-            email: email,
-            senha: senha
-        }
-
         const res = await fetch('https://tech-desk-backend.vercel.app/login', {
             method: "POST",
 			credentials: 'include',
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(dados)
+            body: JSON.stringify({email, senha})
         })
 
         console.log(res)
