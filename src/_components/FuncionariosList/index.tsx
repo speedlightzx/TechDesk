@@ -25,7 +25,6 @@ useEffect(() => {
 
     }).then(res => res.json())
     setList(res.funcionarios)
-    if(list.length == 0) setList([{ email: "", cargo: "" }])
         
     console.log(res)
 
@@ -34,6 +33,8 @@ useEffect(() => {
             setMessage("Algum erro aconteceu...")
         } finally {
             setLoading(false)
+            console.log(list)
+            if(list.length == 0) setList([{ email: "", cargo: ""}])
         }
 
 }
