@@ -27,7 +27,6 @@ export default function FuncionarioLogin() {
 
         const res = await fetch('https://tech-desk-backend.vercel.app/login', {
             method: "POST",
-			credentials: 'include',
             headers: {
                 "Content-Type": "application/json"
             },
@@ -37,6 +36,7 @@ export default function FuncionarioLogin() {
         console.log(res)
         const resJson = await res.json()
         console.log(resJson)
+        localStorage.setItem("session_token", resJson.token)
 
         if(res.ok) return redirect('https://techdesk-new.vercel.app/dashboard/home')
         

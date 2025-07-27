@@ -16,9 +16,13 @@ const [message, setMessage] = useState<string>("Carregando funcionários...")
 useEffect(() => {
     async function getFuncionarios() {
         try {
+    const token = localStorage.getItem("session_token")
     const res = await fetch("https://tech-desk-backend.vercel.app/getFuncionarios", {
         method: "GET",
-        credentials: "include"
+        headers: {
+            "Authorization": `${token}`
+        }
+
     }).then(res => res.json())
     setList(res.funcionarios)
     setLoading(false)

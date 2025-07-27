@@ -5,10 +5,10 @@ const dashboardURL = "/dashboard/home"
 
 export function middleware(req: NextRequest) {
     const path = req.nextUrl.pathname
-    const cookieToken = req.cookies.get('session_token')
+    const token = localStorage.getItem("session_token")
 
     //caso o usuario esteja logado e esteja na pagina de login, ele sera redirecionado para o home na dashboard
-    if(cookieToken && path == loginPageURL) { 
+    if(token && path == loginPageURL) { 
         const redirectURL = req.nextUrl.clone()
         redirectURL.pathname = dashboardURL
         return NextResponse.redirect(redirectURL)
@@ -20,7 +20,7 @@ export function middleware(req: NextRequest) {
 
     const redirectURL = req.nextUrl.clone()
     redirectURL.pathname = loginPageURL
-    if(!cookieToken) return NextResponse.redirect(redirectURL)
+    if(!token) return NextResponse.redirect(redirectURL)
 
     return NextResponse.next()
 }

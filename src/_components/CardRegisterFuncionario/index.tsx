@@ -32,12 +32,13 @@ export default function CardRegisterFuncionario({ setCardOpen, setRender, render
     const submitForm = async(e: FormEvent) => {
         e.preventDefault()
 
+        const token = localStorage.getItem("session_token")
         const res = await fetch('https://tech-desk-backend.vercel.app/createFuncionario', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `${token}`
             },
-            credentials: "include",
             body: JSON.stringify(dados)
         })
 

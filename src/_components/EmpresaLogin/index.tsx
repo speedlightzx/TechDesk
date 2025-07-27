@@ -35,7 +35,6 @@ export default function EmpresaLogin() {
     
             const res = await fetch('https://tech-desk-backend.vercel.app/createEmpresa', {
                 method: "POST",
-                credentials: 'include',
                 headers: {
                     "Content-Type": "application/json"
                 },
