@@ -33,8 +33,6 @@ useEffect(() => {
             setMessage("Algum erro aconteceu...")
         } finally {
             setLoading(false)
-            console.log(list)
-            if(list.length == 0) setList([{ email: "", cargo: ""}])
         }
 
 }
@@ -43,9 +41,13 @@ getFuncionarios()
 
     return (
         <div className="w-full h-full overflow-y-auto pl-2 pr-2 pt-2">
-            {loading ? 
-            <div className="w-full h-full flex justify-center items-center"> <h1 className="text-3xl">{message}</h1> </div>
-        :
+            
+        { /* se estiver carregando mostra uma mensagem de carregando */}
+        {loading && 
+        <div className="w-full h-full flex justify-center items-center"> <h1 className="text-3xl">{message}</h1> </div>}
+        
+{ /* se ja estiver carregado e tiver a lista, a lista sera renderizada */}
+        {!loading &&
 <Table>
   <TableCaption>Lista de funcionários presentes em sua empresa.</TableCaption>
   <TableHeader>
