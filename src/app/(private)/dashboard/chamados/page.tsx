@@ -2,6 +2,7 @@
 
 import CardAbrirChamado from "@/_components/CardAbrirChamado";
 import CardChamado from "@/_components/CardChamado";
+import Middleware from "@/_components/Middleware";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 

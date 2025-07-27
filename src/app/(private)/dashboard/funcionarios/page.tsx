@@ -2,6 +2,7 @@
 
 import CardRegisterFuncionario from "@/_components/CardRegisterFuncionario";
 import FuncionariosList from "@/_components/FuncionariosList";
+import Middleware from "@/_components/Middleware";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 

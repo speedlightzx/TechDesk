@@ -1,3 +1,4 @@
+import Middleware from "@/_components/Middleware";
 import Status from "@/_components/Status";
 import { CircleAlert, Clock, PhoneCall, Users } from "lucide-react";
 

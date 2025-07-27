@@ -25,12 +25,15 @@ useEffect(() => {
 
     }).then(res => res.json())
     setList(res.funcionarios)
-    setLoading(false)
+    if(list.length == 0) setList([{ email: "", cargo: "" }])
+        
     console.log(res)
 
         } catch(err) {
             console.log(err)
             setMessage("Algum erro aconteceu...")
+        } finally {
+            setLoading(false)
         }
 
 }
@@ -60,7 +63,6 @@ getFuncionarios()
   </TableBody>
 </Table>
         }
-
         </div>
     )
 }
