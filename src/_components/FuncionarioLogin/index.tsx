@@ -38,7 +38,7 @@ export default function FuncionarioLogin() {
         console.log(resJson)
         localStorage.setItem("session_token", resJson.token)
 
-        if(res.ok) return redirect('https://techdesk-new.vercel.app/dashboard/home')
+        if(res.ok) return redirect('https://techdesk-new.vercel.app/dashboard/home') //https://techdesk-new.vercel.app/dashboard/home
         
         setStatusResponse({ message: resJson.error})
         setTimeout(() => setStatusResponse({ message: "" }), 7000)
