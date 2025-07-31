@@ -1,11 +1,12 @@
 "use client"
 
-import { Home } from "lucide-react"
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader, SidebarProvider } from "../ui/sidebar"
+import { Home, LogOut } from "lucide-react"
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarHeader, SidebarProvider, SidebarFooter } from "../ui/sidebar"
 import { CircleUserRound, ClipboardList, Users } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
+import { Button } from "../ui/button";
 
 const items = [
   {
@@ -77,6 +78,16 @@ useEffect(() => {
                     </SidebarMenu>
                 </SidebarGroup>
             </SidebarContent>
+            <SidebarFooter className="bg-gray-900">
+              <Button onClick={() => {
+                localStorage.removeItem("session_token")
+                redirect(window.location.origin)
+              }}
+              variant="secondary">
+                <LogOut />
+                Sair
+              </Button>
+            </SidebarFooter>
         </Sidebar>
     </SidebarProvider>
   )
