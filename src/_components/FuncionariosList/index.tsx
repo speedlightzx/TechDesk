@@ -2,13 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import FuncionarioDropdownMenu from "../FuncionarioDropdownMenu/FuncionarioDropdownMenu";
+import { Cargo } from "@/types/cargoEnum";
 
 interface listInfo {
     email: string
-    cargo: string
+    cargo: Cargo
 }
 
-export default function FuncionariosList({ render }: { render: boolean }) {
+export default function FuncionariosList({ render, setRender }: { render: boolean, setRender: any }) {
 
 const [list, setList] = useState<listInfo[]>([])
 const [loading, setLoading] = useState<boolean>(true)
@@ -30,7 +32,6 @@ useEffect(() => {
     console.log(res)
 
         } catch(err) {
-            console.log(err)
             setMessage("Algum erro aconteceu...")
         } finally {
             setLoading(false)
@@ -62,6 +63,11 @@ getFuncionarios()
         <TableRow key={item.email}>
             <TableCell>{item.email}</TableCell>
             <TableCell>{item.cargo}</TableCell>
+            {item.cargo !== "CEO" && 
+            <TableCell>
+                <FuncionarioDropdownMenu render={render} setRender={setRender} info={item}/>
+            </TableCell>
+            }
         </TableRow>
      ))}
   </TableBody>

@@ -40,9 +40,10 @@ export default function EmpresaLogin() {
                 },
                 body: JSON.stringify(dados)
             })
-            console.log(res)
+            
 
             const resJson = await res.json()
+            console.log(resJson)
 
             const resMessage = resJson.error ? resJson.error : resJson.message
             const resSuccess = res.ok ? true : false

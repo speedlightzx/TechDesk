@@ -33,7 +33,6 @@ export default function FuncionarioLogin() {
             body: JSON.stringify({email, senha})
         })
 
-        console.log(res)
         const resJson = await res.json()
         console.log(resJson)
         localStorage.setItem("session_token", resJson.token)

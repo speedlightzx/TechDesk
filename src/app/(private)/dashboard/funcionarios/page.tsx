@@ -22,7 +22,7 @@ export default function Funcionarios() {
             </div>
 
             <div className="w-full h-[80%] flex justify-center items-center">
-                <FuncionariosList render={render}/>
+                <FuncionariosList setRender={setRender} render={render}/>
             </div>
 
         </div>
