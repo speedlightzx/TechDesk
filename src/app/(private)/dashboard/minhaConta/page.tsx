@@ -43,7 +43,7 @@ const [senha, setSenha] = useState<string>("")
 
 const dados = {
     nome,
-    senha
+    ...(senha ? { senha }: {})
 }
 
 const submitAccountInfo = async (e:FormEvent) => {
