@@ -7,6 +7,7 @@ import { Cargo } from "@/types/cargoEnum";
 
 interface listInfo {
     email: string
+    nome: string
     cargo: Cargo
 }
 
@@ -55,6 +56,7 @@ getFuncionarios()
   <TableHeader>
     <TableRow>
       <TableHead className="font-semibold">Email</TableHead>
+      <TableHead className="font-semibold">Nome</TableHead>
       <TableHead className="font-semibold">Cargo</TableHead>
     </TableRow>
   </TableHeader>
@@ -62,6 +64,7 @@ getFuncionarios()
      {list.map((item) => (
         <TableRow key={item.email}>
             <TableCell>{item.email}</TableCell>
+            <TableCell>{item.nome}</TableCell>
             <TableCell>{item.cargo}</TableCell>
             {item.cargo !== "CEO" && 
             <TableCell>

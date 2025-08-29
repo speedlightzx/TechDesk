@@ -3,10 +3,10 @@ import { ReactNode } from "react"
 interface statusComponent{
     emoji: ReactNode,
     statusTitle: string,
-    statusInformation: string
+    statusInformation: string|number
 }
 
-export default function Status( {statusTitle, statusInformation, emoji} : statusComponent) {
+export default function StatusDisplay( {statusTitle, statusInformation, emoji} : statusComponent) {
     return (
         <section className="w-[35vh] flex flex-col h-[29vh] p-3 shadow-md rounded-lg bg-white">
             <div className="flex gap-x-3 h-[30%] items-center">
