@@ -52,9 +52,6 @@ useEffect(() => {
   return (
     <SidebarProvider className="h-screen lg:max-w-[25vh] w-full">
         <Sidebar className="h-screen lg:max-w-[25vh] w-full border-r-2 border-r-indigo-500">
-            <SidebarHeader className="bg-gray-900">
-                <h1 className="text-center text-white font-bold">Nome da empresa</h1>
-            </SidebarHeader>
             <SidebarContent className="bg-gray-900">
                 <SidebarGroup>
                     <SidebarGroupLabel className="text-white">Empresa</SidebarGroupLabel>

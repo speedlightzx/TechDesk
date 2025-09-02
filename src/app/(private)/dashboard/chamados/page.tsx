@@ -1,14 +1,48 @@
 "use client"
 
-import CardAbrirChamado from "@/_components/CardAbrirChamado";
+import CardAbrirChamado, { LevelOfSeverity } from "@/_components/CardAbrirChamado";
 import CardChamado from "@/_components/CardChamado";
-import Middleware from "@/_components/Middleware";
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+interface chamadoData {
+    titulo: string
+    descricao: string
+    severidade: LevelOfSeverity
+    data: string
+    status: string
+}
 
 export default function Chamados() {
 
     const [cardOpen, setCardOpen] = useState<boolean>(false)
+    const [chamadosList, setChamadosList] = useState<chamadoData[]>()
+    const [loading, setLoading] = useState<boolean>(true)
+    const [message, setMessage] = useState<string>("Carregando chamados...")
+
+    const [render, setRender] = useState<boolean>(false)
+
+    useEffect(() => {
+        const getChamados = async() => {
+            try {
+                const token = localStorage.getItem("session_token")
+                const res = await fetch("https://tech-desk-backend.vercel.app/myChamados", {
+                    method: "GET",
+                    headers: { "Authorization": `${token}`}
+                }).then(res => res.json())
+
+                setChamadosList(res.chamadosList)
+                console.log(res.chamadosList)
+            } catch(err) {
+                setMessage("Algum erro aconteceu...")
+            } finally {
+                setLoading(false)
+            }
+
+        }
+
+        getChamados()
+    }, [render])
 
     return (
         <div className="w-full h-screen z-0">
@@ -25,15 +59,35 @@ export default function Chamados() {
                 <h1 className="text-3xl font-semibold">Seus últimos chamados abertos</h1>
 
                 <section className="w-full flex justify-center gap-5 flex-wrap h-full overflow-y-auto border-t-1 p-2 rounded-md">
-                    <CardChamado levelOfSeverity="Alto" title="computador falhando" description="nao liga" author="eu" createdAt={new Date().toLocaleDateString()}/>
-                    <CardChamado levelOfSeverity="Baixo" title="computador falhando" description="nao liga" author="eu" createdAt={new Date().toLocaleDateString()}/>
-                    <CardChamado levelOfSeverity="Crítico" title="computador falhando" description="nao liga" author="eu" createdAt={new Date().toLocaleDateString()}/>
-                    <CardChamado levelOfSeverity="Médio" title="computador falhando" description="nao liga" author="eu" createdAt={new Date().toLocaleDateString()}/>
+                    
+                    {loading && 
+                    <div className="w-full h-full flex justify-center items-center">
+                    <h1 className="text-3xl">{message}</h1> 
+                    </div>
+                    }
+
+                    {!loading && chamadosList?.length == 0 &&
+                    <div className="w-full h-full flex justify-center items-center">
+                    <h1 className="text-3xl">Nenhum chamado encontrado.</h1>
+                    </div>
+                    }
+                    
+                    
+                    {!loading && chamadosList && chamadosList?.map((chamado, index) => {
+                        return <CardChamado
+                        title={chamado.titulo}
+                        description={chamado.descricao}
+                        levelOfSeverity={chamado.severidade}
+                        createdAt={chamado.data}
+                        key={index}
+
+                        />
+                    })}
                 </section>
             </div>
         </div>
 
-        {cardOpen && <CardAbrirChamado setCardOpen={setCardOpen}/>}
+        {cardOpen && <CardAbrirChamado renderBool={render} renderState={setRender} setCardOpen={setCardOpen}/>}
         </div>
     )
 }

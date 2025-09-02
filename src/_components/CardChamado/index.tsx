@@ -7,11 +7,11 @@ interface CardInformation {
     title: string,
     description: string,
     levelOfSeverity: LevelOfSeverity,
-    author: string,
+    author?: string,
     createdAt: string
 }
 
-export default function CardChamado({ title, description, levelOfSeverity, author, createdAt }: CardInformation) {
+export default function CardChamado({ title, description, levelOfSeverity, createdAt, author }: CardInformation) {
     
     const alertColor = (levelOfSeverity:LevelOfSeverity) => {
         if(levelOfSeverity == "Baixo") return "blue"
@@ -35,8 +35,10 @@ export default function CardChamado({ title, description, levelOfSeverity, autho
                 
                 <div className="flex flex-col gap-y-2">
                 <Label className="flex gap-x-1 items-center"><CircleAlert color={alertColor(levelOfSeverity)} size={20}/> Severidade: {levelOfSeverity}</Label>
-                <Label className="flex gap-x-1 items-center"><User color="blue" size={20}/>Usuário: {author}</Label>
-                <Label className="flex gap-x-1 items-center"><CalendarDays color="green" size={20}/>Aberto em: {createdAt}</Label>
+                {author ?
+                <Label className="flex gap-x-1 items-center"><User color="blue" size={20}/>Usuário: {author}</Label> 
+                : <></>}
+                <Label className="flex gap-x-1 items-center"><CalendarDays color="green" size={20}/>Aberto em: {new Date(createdAt).toLocaleDateString()}</Label>
                 </div>
 
             </div> 

@@ -3,7 +3,7 @@
 import { X } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardAction, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
-import React, { FormEvent, useState } from "react";
+import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
@@ -12,22 +12,36 @@ import { SelectValue } from "@radix-ui/react-select";
 
 interface card {
     setCardOpen: (cardOpen: boolean) => void
+    renderState: Dispatch<SetStateAction<boolean>>
+    renderBool: boolean
 }
 
 export type LevelOfSeverity = "Baixo"|"Médio"|"Alto"|"Crítico"|""
 
-export default function CardAbrirChamado({ setCardOpen }: card) {
+export default function CardAbrirChamado({ setCardOpen, renderState, renderBool }: card) {
 
     const [title, setTitle] = useState<string>("")
     const [desc, setDesc] = useState<string>("")
+    const [severity, setSeverity] = useState<LevelOfSeverity>("Baixo")
 
-    
-    const [severity, setSeverity] = useState<LevelOfSeverity>("")
+    const dados = {
+        titulo: title,
+        descricao: desc,
+        severidade: severity
+    }
 
     const submitForm = async(e: FormEvent) => {
         e.preventDefault()
 
-        //json para enviar para o backend, com os dados ja feitos mais o usuario que criou, e data da criacao
+        const token = localStorage.getItem("session_token")
+        const res = await fetch("https://tech-desk-backend.vercel.app/createChamado", {
+            method: "POST",
+            headers: { "Authorization": `${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify(dados)
+        })
+
+        console.log(await res.json())
+        renderState(!renderBool)
         setCardOpen(false)
     }
 
@@ -58,7 +72,7 @@ export default function CardAbrirChamado({ setCardOpen }: card) {
 
                 <div className="cardDiv">
                 <Label>Nível de Severidade</Label>
-                <Select required defaultValue="Baixo" onValueChange={(v:LevelOfSeverity) => setSeverity(v)}>
+                <Select required value={severity} onValueChange={(v:LevelOfSeverity) => setSeverity(v)}>
                     <SelectTrigger>
                         <SelectValue placeholder="Severidade"/>
                     </SelectTrigger>
